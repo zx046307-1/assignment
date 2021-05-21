@@ -15,9 +15,10 @@ int main()
 {
 	vector<int> deck(numOfCards);
 	int numOfPlayer;
-	int player=[4][5]
+	int computer[5];
+	int player[4][5];
 
-  cout<<"輸入玩家數(最多4人):"
+	cout << "輸入玩家數(最多4人):";
 	cin >> numOfPlayer;
 
 	for (int i = 0; i < numOfCards; i++)
@@ -40,6 +41,11 @@ int main()
 		{
 			player[i][j] = deck[5 * i + j];
 		}
+	}
+
+	for (int i = 21; i < 26; i++)
+	{
+		computer[i - 20] = deck[i];
 	}
 
 	for (int i = 0; i < numOfCards; i++)
