@@ -4,60 +4,40 @@
 #include <cstdlib>
 #include <string>
 #include <vector> 
-
+#include "test.h"
 using namespace std;
 
 int balance[4];
 
-const int numOfCards = 52;
-string suits[4] = { "club","diamond","heart","Spades" };
-string ranks[13] = { "A","2","3","4","5","6","7","8","9","10","J","Q","K" };
-
 int main()
 {
-	vector<int> deck(numOfCards);
-	int numOfPlayer;
-	int computer[5];
-	int player[4][5];
+    int choose = 1;
+    test test;
+    test.inputBet();
+    test.initPoker();
 
-	for (int i = 0; i < 4; i++)
-	{
-		balance[i] = 1000;
-	}
+    while (choose == 1 || choose == 2 || choose == 3 || choose == 4)
+    {
+        cout << "1.要牌 2.不要牌 3.重新開始 4.退出  >>請輸入數字選擇操作:";
+        cin >> choose;
+        if (choose == 1)
+        {
+            test.farmerAsk();
+        }
+        else if (choose == 2)
+        {
+            test.landlordProcess();
+        }
+        else if (choose == 3) 
+        {
+            test.newGame();
+        }
+        else if (choose == 4)
+        {
+            exit(0);
+        }
+    }
 
-	cout << "輸入玩家數(最多4人):";
-	cin >> numOfPlayer;
-
-	for (int i = 0; i < numOfCards; i++)
-	{
-		deck[i] = i;
-	}
-
-	srand(time(0));
-	for (int i = 0; i < numOfCards; i++)
-	{
-		int index = rand() % numOfCards;
-		int temp = deck[i];
-		deck[i] = deck[index];
-		deck[index] = temp;
-	}
-
-	for (int i = 0; i < numOfPlayer; i++)
-	{
-		for (int j = 0; j < 5; i++)
-		{
-			player[i][j] = deck[5 * i + j];
-		}
-	}
-
-	for (int i = 21; i < 26; i++)
-	{
-		computer[i - 20] = deck[i];
-	}
-
-	for (int i = 0; i < numOfCards; i++)
-	{
-		cout << ranks[deck[i] % 13] << suits[deck[i] / 13] << endl;
-	}
-
+    return 0;
 }
+
