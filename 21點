@@ -7,14 +7,13 @@
 #include "test.h"
 using namespace std;
 
-int balance[4];
-
 int main()
 {
     int choose = 1;
     test test;
+    cout << "****************** 歡迎玩二十一點遊戲 ******************" << endl << endl;
     test.inputBet();
-    test.initPoker();
+    test.initCards();
 
     while (choose == 1 || choose == 2 || choose == 3 || choose == 4)
     {
