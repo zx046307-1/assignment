@@ -1,7 +1,7 @@
 #ifndef test_h
 #define test_h
 
-#include<string>
+#include <string>
 
 using namespace std;
 
@@ -24,8 +24,8 @@ public:
 	void initCards();
 	string getPlayer();
 	string getComputer();
-	int getSumF();
-	int getSumL();
+	int getSumPlayer();
+	int getSumComputer();
 	void farmerAsk();
 	void landlordAsk();
 	void inputBet();
