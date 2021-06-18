@@ -1,7 +1,8 @@
-#include<iostream>
-#include<time.h>
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
 
-#include"test.h"
+#include "test.h"
 
 #define NUM 1000
 int randNum[NUM];
@@ -67,7 +68,7 @@ test::test()
 }
 void test::initCards()
 {
-    cout << "開始洗牌>>>>>" << endl;
+    cout << "新一局遊戲開始，開始洗牌>>>>>" << endl;
 
     player[0] = randNum[n++];
     player[1] = randNum[n++];
@@ -77,7 +78,7 @@ void test::initCards()
     playerNum = 2;
     computerNum = 2;
 
-    cout << "你的牌為:" << getPlayer() << endl;
+    cout << "洗牌完成,你的牌為:" << getPlayer() << endl;
 }
 
 string test::getPlayer()
@@ -86,8 +87,10 @@ string test::getPlayer()
     string result = "";
 
     for (i = 0;i < playerNum;i++)
+    {
         result = result + cardsName[player[i]] + " ";
-
+    }
+        
     return result;
 }
 
@@ -97,28 +100,34 @@ string test::getComputer()
     string result = "";
 
     for (i = 0;i < computerNum;i++)
+    {
         result = result + cardsName[computer[i]] + " ";
+    }
 
     return result;
 }
 
-int test::getSumF()
+int test::getSumPlayer()
 {
     int result = 0;
 
     for (int i = 0;i < playerNum;i++)
+    {
         result = result + cardsValue[player[i]];
+    }
 
     return result;
 }
 
-int test::getSumL()
+int test::getSumComputer()
 {
 
     int result = 0;
 
     for (int i = 0;i < computerNum;i++)
+    {
         result = result + cardsValue[computer[i]];
+    }
 
     return result;
 }
@@ -127,27 +136,27 @@ void test::farmerAsk()
 {
     if (playerNum >= 5)
     {
-        cout << "你的牌數已夠5張了" << endl;
+        cout << "你的牌數已夠5張，不能再要牌了" << endl;
         landlordProcess();
     }
     else
     {
         player[playerNum++] = randNum[n++];
         cout << "你的牌為:" << getPlayer() << endl;
-        if (getSumF() > 21)
+        if (getSumPlayer() > 21)
         {
-            cout << "你爆了，賠了" << bet << "元" << endl;
+            cout << "你撐死了,你輸了" << bet << "元" << endl;
             money = money - bet;
             if (money <= 0)
             {
-                cout << "你沒錢了" << endl;
+                cout << "你已經輸光了，哈哈" << endl;
                 cout << "遊戲結束" << endl;
                 exit(0);
             }
             inputBet();
             initCards();
         }
-        else if (getSumF() == 21)
+        else if (getSumPlayer() == 21)
         {
             landlordProcess();
         }
@@ -158,29 +167,29 @@ void test::landlordAsk()
 {
     if (computerNum >= 5)
     {
-        if (getSumF() > getSumL())
+        if (getSumPlayer() > getSumComputer())
         {
             cout << "莊家的牌為" << getComputer() << endl;
-            cout << "你贏了,你賺了" << bet << "元" << endl;
+            cout << "你贏了,你贏了" << bet << "元" << endl;
             money = money + bet;
             inputBet();
             initCards();
         }
-        else if (getSumF() == getSumL())
+        else if (getSumPlayer() == getSumComputer())
         {
             cout << "莊家的牌為" << getComputer() << endl;
             cout << "平手" << endl;
             inputBet();
             initCards();
         }
-        else if (getSumF() < getSumL())
+        else if (getSumPlayer() < getSumComputer())
         {
             cout << "莊家的牌為" << getComputer() << endl;
-            cout << "你輸了,你賠了" << bet << "元" << endl;
+            cout << "你輸了,你輸了" << bet << "元" << endl;
             money = money - bet;
             if (money <= 0)
             {
-                cout << "你沒錢了" << endl;
+                cout << "你已經輸光了，哈哈" << endl;
                 cout << "遊戲結束" << endl;
                 exit(0);
             }
@@ -191,10 +200,10 @@ void test::landlordAsk()
     else
     {
         computer[computerNum++] = randNum[n++];
-        if (getSumL() > 21)
+        if (getSumComputer() > 21)
         {
             cout << "莊家的牌為" << getComputer() << endl;
-            cout << "莊家爆了,你贏了" << bet << "元" << endl;
+            cout << "莊家爆了,你賺了" << bet << "元" << endl;
             money = money + bet;
             inputBet();
             initCards();
@@ -209,7 +218,7 @@ void test::inputBet()
     {
         cin >> bet;
         if (bet > money)
-            cout << "你沒那麼多錢，重新輸入:";
+            cout << "你沒那麼多錢，重新輸入吧:";
     } while (bet > money);
 
 }
@@ -223,23 +232,23 @@ void test::newGame()
 
 void test::landlordProcess()
 {
-    if (getSumL() >= 17)
+    if (getSumComputer() >= 17)
     {
-        if (getSumL() > getSumF())
+        if (getSumComputer() > getSumPlayer())
         {
             cout << "莊家的牌為" << getComputer() << endl;
-            cout << "莊家勝，你賠了" << bet << "元" << endl;
+            cout << "你輸了,你賠了" << bet << "元" << endl;
             money = money - bet;
             if (money <= 0)
             {
-                cout << "你沒錢了" << endl;
+                cout << "你已經輸光了" << endl;
                 cout << "遊戲結束" << endl;
                 exit(0);
             }
             inputBet();
             initCards();
         }
-        else if (getSumF() == getSumL())
+        else if (getSumPlayer() == getSumComputer())
         {
             cout << "莊家的牌為" << getComputer() << endl;
             cout << "本次遊戲平手" << endl;
