@@ -13,6 +13,7 @@ private:
 	static int numOfPlayer;
 
 public:
+	multiplayer();
 	static int getNumOfPlayer();
 
 };
