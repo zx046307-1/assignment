@@ -7,11 +7,13 @@ using namespace std;
 
 #include "test.h"
 
-class Multiplayer:public test
+class multiplayer:public test
 {
 private:
-	int numOfPlayer;
+	static int numOfPlayer;
+
 public:
+	static int getNumOfPlayer();
 
 };
 
