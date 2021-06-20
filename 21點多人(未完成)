@@ -1,0 +1,48 @@
+#include <iostream>
+
+#include "test.h"
+#include "multiplayer.h"
+
+using namespace std;
+
+int main()
+{
+    int num;
+    int choose = 1;
+    test test;
+
+
+    cout << "輸入玩家數:" << endl;
+    cin >> num;
+
+    for(int i=0;i<num;i++)
+
+    cout << "------------------ 歡迎玩二十一點遊戲 ------------------" << endl << endl;
+    test.inputBet();
+    test.initCards();
+
+    while (choose == 1 || choose == 2 || choose == 3 || choose == 4)
+    {
+        cout << "1.要牌 2.不要牌 3.重新開始 4.退出  >>請輸入數字選擇操作:";
+        cin >> choose;
+        if (choose == 1)
+        {
+            test.farmerAsk();
+        }
+        else if (choose == 2)
+        {
+            test.landlordProcess();
+        }
+        else if (choose == 3) 
+        {
+            test.newGame();
+        }
+        else if (choose == 4)
+        {
+            exit(0);
+        }
+    }
+
+    return 0;
+}
+
