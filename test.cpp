@@ -136,7 +136,7 @@ void test::farmerAsk()
 {
     if (playerNum >= 5)
     {
-        cout << "你的牌數已夠5張，不能再要牌了" << endl;
+        cout << "你的牌數已夠5張" << endl;
         landlordProcess();
     }
     else
@@ -145,11 +145,11 @@ void test::farmerAsk()
         cout << "你的牌為:" << getPlayer() << endl;
         if (getSumPlayer() > 21)
         {
-            cout << "你撐死了,你輸了" << bet << "元" << endl;
+            cout << "你爆了,你輸了" << bet << "元" << endl;
             money = money - bet;
             if (money <= 0)
             {
-                cout << "你已經輸光了，哈哈" << endl;
+                cout << "你已經輸光了" << endl;
                 cout << "遊戲結束" << endl;
                 exit(0);
             }
@@ -170,7 +170,7 @@ void test::landlordAsk()
         if (getSumPlayer() > getSumComputer())
         {
             cout << "莊家的牌為" << getComputer() << endl;
-            cout << "你贏了,你贏了" << bet << "元" << endl;
+            cout << "你贏了,你賺了" << bet << "元" << endl;
             money = money + bet;
             inputBet();
             initCards();
@@ -185,11 +185,11 @@ void test::landlordAsk()
         else if (getSumPlayer() < getSumComputer())
         {
             cout << "莊家的牌為" << getComputer() << endl;
-            cout << "你輸了,你輸了" << bet << "元" << endl;
+            cout << "你輸了,你賠了" << bet << "元" << endl;
             money = money - bet;
             if (money <= 0)
             {
-                cout << "你已經輸光了，哈哈" << endl;
+                cout << "你已經沒錢了" << endl;
                 cout << "遊戲結束" << endl;
                 exit(0);
             }
@@ -218,7 +218,7 @@ void test::inputBet()
     {
         cin >> bet;
         if (bet > money)
-            cout << "你沒那麼多錢，重新輸入吧:";
+            cout << "你沒那麼多錢，重新輸入:";
     } while (bet > money);
 
 }
@@ -241,7 +241,7 @@ void test::landlordProcess()
             money = money - bet;
             if (money <= 0)
             {
-                cout << "你已經輸光了" << endl;
+                cout << "你已經賠光了" << endl;
                 cout << "遊戲結束" << endl;
                 exit(0);
             }
