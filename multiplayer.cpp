@@ -11,3 +11,11 @@ int multiplayer::getNumOfPlayer()
 {
 	return numOfPlayer;
 }
+
+void multiplayer::player()
+{
+	for (int i = 0;i < numOfPlayer;i++)
+	{
+		getPlayer();
+	}
+}
