@@ -145,11 +145,11 @@ void test::farmerAsk()
         cout << "你的牌為:" << getPlayer() << endl;
         if (getSumPlayer() > 21)
         {
-            cout << "你爆了,你輸了" << bet << "元" << endl;
+            cout << "你爆了,你賠了" << bet << "元" << endl;
             money = money - bet;
             if (money <= 0)
             {
-                cout << "你已經輸光了" << endl;
+                cout << "你已經賠光了" << endl;
                 cout << "遊戲結束" << endl;
                 exit(0);
             }
