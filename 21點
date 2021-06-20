@@ -14,24 +14,25 @@ int main()
 
     while (choose == 1 || choose == 2 || choose == 3 || choose == 4)
     {
-        cout << "1.要牌 2.不要牌 3.重新開始 4.退出  >>請輸入數字選擇操作:";
+        cout << "1.要牌 2.不要牌 3.重新開始 4.退出(任一輸入)  >>請輸入數字選擇操作:";
         cin >> choose;
-        if (choose == 1)
-        {
-            test.farmerAsk();
-        }
-        else if (choose == 2)
-        {
+        
+        switch(choose) 
+        { 
+        case 1: 
+            test.farmerAsk(); 
+            break; 
+        case 2: 
             test.landlordProcess();
-        }
-        else if (choose == 3) 
-        {
+            break; 
+        case 3: 
             test.newGame();
-        }
-        else if (choose == 4)
-        {
+            break; 
+        default: 
             exit(0);
-        }
+            break;
+        } 
+      
     }
 
     return 0;
